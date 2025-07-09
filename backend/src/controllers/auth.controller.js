@@ -136,9 +136,12 @@ export function logout(req, res)
 export async function onboard(req, res)
 {
     try {
+        // takes the userId from the 'req.user' object, attached by the 'protectRoute
         const userId = req.user._id
+        // 'body' required to update the user profile
         const {fullName, bio, nativeLanguage, learningLanguage, location} = req.body
 
+        // checks if all the required fields are present (displays the missing fields)
         if(!fullName || !bio || !nativeLanguage || !learningLanguage || !location)
         {
             return res.status(400).json({
@@ -149,10 +152,12 @@ export async function onboard(req, res)
                     !nativeLanguage && "nativeLanguage",
                     !learningLanguage && "learningLanguage",
                     !location && "location"
-                ].filter(Boolean)
+                ].filter(Boolean)       //filters the 'falsevalues            
             })
         }
 
+        // UPDATING THE USER PROFILE
+        // "findByIdAndUpdate()" - finds a document by its ID and updates it
         const updatedUser = await User.findByIdAndUpdate(
             userId,
             {
@@ -160,6 +165,8 @@ export async function onboard(req, res)
                 isOnboarded: true
             },
             {new: true}
+            /* "findOneAndUpdate()" returns the document as it was before the update was applied.
+            setting {new: true} "findOneAndUpdate()" will instead give the object after update was applied. */
         )
         if(!updatedUser)
             return res.status(404).json({message: "User not found."})

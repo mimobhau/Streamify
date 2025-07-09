@@ -81,7 +81,7 @@ try {
  userSchema.methods.matchPassword = async function(enteredPassword)
 /**
  *  compares the entered password with the already present 'hashed' password during "Login"
- *  " .methods " object lets us add 'custom instance methods' to he model
+ *  " .methods " object lets us add 'custom instance methods' to the model
  *  these methods can be called on 'individual documents' (here, specific user)
  *  "user" document will now have a ".matchPassword()" method that can be called
 */
