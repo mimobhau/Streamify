@@ -7,6 +7,8 @@ import chatRoutes from "./routes/chat.route.js"
 import {connectDB} from "./lib/db.js"
 import cookieParser from "cookie-parser"
 
+import cors from "cors"
+
 dotenv.config()
 // reads '.env' file, parses all key-value pairs, assigns them to "process.env"
 
@@ -14,6 +16,10 @@ const app = express()
 const PORT = process.env.PORT
 // "process.env.{variable}"
 
+app.use(cors({
+    origin: "http://localhost:5173", // frontend URL
+    credentials: true, // to allow cookies to be sent with requests
+}))
 app.use(express.json())
 // automatically parse the JSON body into a Javascript object, & attach it to "req.body"
 app.use(cookieParser())
