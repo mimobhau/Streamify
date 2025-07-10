@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes, Route} from "react-router"
+import {Routes, Route, Navigate} from "react-router"
 import {Toaster} from "react-hot-toast"
 
 import HomePage from "./pages/HomePage.jsx"
@@ -11,36 +11,49 @@ import ChatPage from "./pages/ChatPage.jsx"
 import OnboardingPage from "./pages/OnboardingPage.jsx"
 
 import { useQuery } from '@tanstack/react-query'
+// "useQuery" heps manage data fetching, caching, loading states & error handling
 import {axiosInstance} from "./lib/axios.js"
 
 const App = () => {
-  // tanstack query crash course
+  // declares the main 'App' component that contains the main routes of the application
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["todos"],
+  // tanstack query crash course
+  const { data: authData, isLoading, error } = useQuery({
+    /**
+     *  'useQuery' runs the 'QueryFn'; handles loading/error states and returns the data
+     *  'data' is the response from the server, 'isLoading' is true
+     * 'error' - contains any error that occured
+     */
+    queryKey: ["authUser"],
+    // 'queryKey' is used to identify the query, can be any unique value
 
     queryFn: async () => {
-      const res = await axios.get("/auth/me");
+      const res = await axiosInstance.get("/auth/me");
+      // 'axios.get' is used to make a GET request to '/auth/me
       return res.data;
     },
+    retry: false    //auth checks should not retry / disables automatic retries on failure
   });
 
-  console.log({data})
-  console.log({isLoading})
-  console.log({error})
-  // end
-
+  const authUser = authData?.user
+  // safely extracts the 'user' object from 'authData' if it exists
+  
+  // stores the result in 'authData', from which "authUser" is extracted
   
   return (
     <div className="h-screen text-5xl" data-theme="night">
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
-        <Route path="/call" element={<CallPage />} />
-        <Route path="/chat" element={<ChatPage />} />
-        <Route path="/onboarding" element={<OnboardingPage />} />
+        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+        {/* if user is 'authenticated' (authUser) --> can go to "HomePage"
+            if user is 'not authenticated --> redirect (<Navigate to="" />) to "LoginPage" */}
+        <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
+        {/* if user is 'not authenticated' (!authUser) --> can go to "SignUpPage"
+            if user is 'authenticated' --> redirect to "HomePage" */}
+        <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path="/notifications" element={authUser ? <NotificationsPage /> : <Navigate to="/login" />} />
+        <Route path="/call" element={authUser ? <CallPage /> : <Navigate to="/login" />} />
+        <Route path="/chat" element={authUser ? <ChatPage /> : <Navigate to="/login" />} />
+        <Route path="/onboarding" element={authUser ? <OnboardingPage /> : <Navigate to="/login" />} />
       </Routes>
 
       <Toaster />

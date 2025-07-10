@@ -1,0 +1,81 @@
+**SIGNUP PAGE**
+
+// LEFT-HAND SIDE
+
+<div className="h-screen flex items-center justify-center p-4 sm:p-6 md:p-8" data-theme="forest">
+    h-screen : sets the height of the element to 100% of the viewport height(100vh)
+    flex : applies [display: flex] tomake the element a 'flex container'
+    items-center : align items vertically to the center
+    justify-center : align items horizontally to the center
+    p-4 : applies padding of 1rem (16px) on all sides
+    sm:p-6 : At the 'sm' breakpoint; changes padding to 1.5rem(24px) on all sides
+    md:p-6 : At the 'md' breakpoint; changes padding to 1.5rem(24px) on all sides
+
+<div className="border border-primary/25 flex flex-col lg:flex-col w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden">
+    border : adds a default-width(1px) solid border with default colour (can be overriden)
+    border-primary/25 : sets the border color to your theme's primary color with 25% opacity
+    flex-col : arranges flex items in a column direction [flex-direction: column]
+    lg:flex-col : At the 'lg' breakpoint, ensures the flex-direction stays as column
+    w-full : sets the width to 100% of the parent container
+    max-w-5xl : limits the maximum width to 5xl
+    mx-auto : applies horizontal margin (margin-left & margin-right) as auto, centering the elemnet horizontally in its container
+    bg-base-100 : sets the background color to the theme's 'base-100'
+    rounded-xl : applies extra-large border-radius
+    shadow-lg : applies a large box-shadow (giving an elevated appearance)
+    overflow-hidden : prevents content from spilling outside the element's bounds (in all directions)
+
+<div className="w-full lg:w-1/2 p-4 sm:p-8 flex flex-col">
+    lg:w-1/2 : At the 'lg' breakpoint, sets the element's width to 50% of its parent
+
+<div className="w-full lg:w-1/2 p-4 sm:p-8 flex flex-col">
+    mb-4 : adds margin-bottom of 1rem (16px)
+    justify-start : aligns flex items to the start(left) of the main axis
+    gap-2 : adds a gap of 0.5rem (8px) between flex items
+
+<ShipWheelIcon className="size-9 text-primary" />
+    size-9 : a shorthand for setting both 'width' & 'height' to 2,25rem (36px)
+    text-primary : sets the text color to theme's primary color
+
+<span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wider">
+    text-3xl : sets the font-size to 1.875rem (30px); with [line-height: 2.25rem] (36px)
+    font-bold : applies a bold font weight
+    font-mono : sets the font family to a monospace font (like 'Menlo', 'Courier')
+    bg-clip-text : clips the background to the shape of the text, used with gradients for GRADIENT-COLORED text
+    text-transparent : makes the text color fully transparent - useful when applying background-based text effects
+    bg-gradient-to-r : creates a 'linear gradient background' that flows from left-to-right
+    from-primary : sets the starting color of the gradient to the theme's primary color
+    to-secondary : sets the ending color to the gradient to the theme's secondary color
+    tracking-wider : increases letter-spacing slightly
+
+<div className="space-y-4">
+    space-y-4 : adds vertical spacing [margin-top] pf 1rem (16px) between direct child elements
+
+<h2 className="text-xl font-semibold">
+    text-xl : sets the font-size to 1.25rem(20px)
+    font-semibold : applies a semi-bold font weoght [font-weight: 600]
+
+className="input input-bordered w-full"
+    input[DaisyUI] : apply default input styles like padding, font, border
+    input[DaisyUI] : adds a bordered variant to the input field
+
+<p className="text-xs opcaity-70 mt-1">
+    mt-1 : adds margin-top of 0.25rem (4px)
+
+<label className="label cursor-pointer justify-start gap-2">
+    cursor-pointer : changes the cursor to a pointer on hover
+
+<span className="text-primary hover:underline">
+    hover:underline : adds an underline on hover
+
+//RIGHT-HAND SIDE
+
+<div className="hidden lg:flex w-full lg:w-1/2 bg-primary/10 items-center justify-center">
+    hidden : hides the element completely with [display: none]
+    lg:flex : At the 'lg' breakpoint, applies [display: flex]
+    b-primary/10 : sets the background color to the theme's 'primary' color with 10% opacity
+
+<div className="relative aspect-square max-w-sm mx-auto">
+    max-w-md : sets the maximum width to the 'md' size (28rem == 448px)
+    relative : applies [position: relative] used for absolutely positioning child elements within
+    aspect-square : forces the element to maintain a '1:1 aspect ratio'
+    max-w-sm : sets the maximum width to the 'sm' size (24rem == 384px)
