@@ -31,6 +31,10 @@ const OnboardingPage = () => {
     onSuccess: () => {
       toast.success("Profile onboarded successfully!")
       queryClient.invalidateQueries({queryKey: ["authUser"]})
+    },
+
+    onError: (error) => {
+      toast.error(error.response.data.message)
     }
   })
   /**
@@ -49,7 +53,14 @@ const OnboardingPage = () => {
   }
 
   // function to select random avatar
-  const handleRandomAvatar = () => {}
+  const handleRandomAvatar = () => {
+    const idx = Math.floor(Math.random() * 100) + 1         //1-100
+    const randomAvatar = `https://avatar.iran.liara.run/public/${idx}.png`
+
+    setFormState({...formState, profilePic: randomAvatar})
+    // keep every other value of the form in the same state, it just update the 'profilePic'
+    toast.success("Random profile picture generated!")
+  }
 
   return (
     <div className="min-h-screen bg-base-100 flex items-center justify-center p-4">
