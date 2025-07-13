@@ -34,7 +34,14 @@ const OnboardingPage = () => {
     },
 
     onError: (error) => {
-      toast.error(error.response.data.message)
+      toast.error(error.response.data.message, {
+  style: {
+    fontSize: '0.875rem',
+    padding: '8px 12px',
+    minWidth: 'auto',
+    maxWidth: '90%',
+  },
+})
     }
   })
   /**
@@ -59,11 +66,17 @@ const OnboardingPage = () => {
 
     setFormState({...formState, profilePic: randomAvatar})
     // keep every other value of the form in the same state, it just update the 'profilePic'
-    toast.success("Random profile picture generated!")
+    toast.success("Random profile picture generated!", {
+      style: {
+    fontSize: '0.875rem', // text-sm
+    padding: '8px 12px',
+    minWidth: 'auto',
+    maxWidth: '90%',
+  }})
   }
 
   return (
-    <div className="min-h-screen bg-base-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-base-100 flex items-center justify-center p-4" data-theme="forest">
       <div className="card bg-base-200 w-full max-w-3xl shadow-xl">
         <div className="card-body p-6 sm:p-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-center mb-8">

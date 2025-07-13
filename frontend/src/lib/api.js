@@ -21,3 +21,18 @@ export const completeOnboarding = async (userData) => {
  * 'sends a POST request to '/auth/onboarding' with the user data
  * 'returns the response data from the server'
  */
+
+export const login = async (loginData) => {
+    const response = await axiosInstance.post("/auth/login", loginData)
+    return response.data
+}
+
+export const logout = async () => {
+    try {
+        const response = await axiosInstance.post("/auth/logout")
+        return response.data
+    } catch (error) {
+        console.log("Error in getAuthUser: ", error)
+        return null
+    }
+}
