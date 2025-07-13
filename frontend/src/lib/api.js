@@ -7,9 +7,14 @@ export const signup = async (signupData) => {
 }
 
 export const getAuthUser = async () => {
-    const res = await axiosInstance.get("/auth/me")
-    // 'axios.get' is used to make a GET request to '/auth/me
-    return res.data
+    try {
+        const res = await axiosInstance.get("/auth/me")
+        // 'axios.get' is used to make a GET request to '/auth/me
+        return res.data
+    } catch (error) {
+        console.log("Error in getAuthUser: ", error)
+        return null
+    }
 }
 
 export const completeOnboarding = async (userData) => {
@@ -28,11 +33,6 @@ export const login = async (loginData) => {
 }
 
 export const logout = async () => {
-    try {
-        const response = await axiosInstance.post("/auth/logout")
-        return response.data
-    } catch (error) {
-        console.log("Error in getAuthUser: ", error)
-        return null
-    }
+    const response = await axiosInstance.post("/auth/logout")
+    return response.data
 }
