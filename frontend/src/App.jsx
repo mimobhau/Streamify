@@ -14,12 +14,16 @@ import useAuthUser from './hooks/useAuthUser.js'
 // custom hook to fetch the authenticated user data
 import PageLoader from './components/PageLoader.jsx'
 import Layout  from './components/Layout.jsx'
+import { useThemeStore } from './store/useThemeStore.js'
 
 const App = () => {
   // declares the main 'App' component that contains the main routes of the application
 
   // tanstack query
   const {isLoading, authUser} = useAuthUser()
+
+  // to change theme dynamically
+  const {theme} = useThemeStore()
 
   const isAuthenticated = Boolean(authUser)
   // returns true if 'authUser' exists, false otherwise
@@ -34,7 +38,7 @@ const App = () => {
     return <PageLoader />
   
   return (
-    <div className="h-screen text-5xl" data-theme="forest">
+    <div className="h-screen text-5xl" data-theme={theme}>
       <Routes>
         <Route
           path="/"

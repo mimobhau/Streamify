@@ -36,3 +36,28 @@ export const logout = async () => {
     const response = await axiosInstance.post("/auth/logout")
     return response.data
 }
+
+// gets 'friends' list
+export async function getUserFriends() {
+    const response = await axiosInstance.get("/users/friends")
+    return response.data
+}
+
+// gets 'recommended users' list
+export async function getRecommendedUsers() {
+    const response = await axiosInstance.get("/users")
+    return response.data
+}
+
+// to track the outgoing friend-requests
+export async function getOutgoingFriendReqs() {
+    const response = await axiosInstance.get("/users/outgoing-friend-requests")
+    return response.data
+}
+
+// to send friend-request with id == 'userId'
+// it is a 'POST' request and it makes changes
+export async function sendFriendRequest(userId) {
+    const response = await axiosInstance.post(`/users/friend-request/${userId}`)
+    return response.data
+}
