@@ -10,7 +10,7 @@ const FriendCard = ({friend}) => {
           <div className="avatar size-12">
             <img src={friend.profilePic} alt={friend.fullName} />
           </div>
-          <h3 className="font-semibold truncate">
+          <h3 className="font-semibold truncate text-2xl">
             {friend.fullName}
           </h3>
         </div>

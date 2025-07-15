@@ -45,7 +45,7 @@ const HomePage = () => {
       if(outgoingFriendReqs && outgoingFriendReqs.length > 0)
       {
         outgoingFriendReqs.forEach((req) => {
-          outgoingIds.add(req.recipient.id)
+          outgoingIds.add(req.recipient._id)
         });
         setOutgoingRequestIds(outgoingIds)
       }
@@ -89,7 +89,7 @@ const HomePage = () => {
                 <h2 className='text-2xl sm:text-3xl font-bold tracking-tight'>
                   Meet New Learners
                 </h2>
-                <p className='opacity-70'>
+                <p className='opacity-70 text-sm'>
                   Discover perfect language exchange partners based on your profile
                 </p>
               </div>
@@ -138,12 +138,12 @@ const HomePage = () => {
 
                       {/* Language with FLAGS */}
                       <div className='flex flex-wrap gap-1.5'>
-                        <span className='badge  badge-secondary'>
+                        <span className='badge badge-secondary'>
                           {getLanguageFlag(user.nativeLanguage)}
                           Native: {capitalize(user.nativeLanguage)}
                         </span>
 
-                        <span className='badge  badge-secondary'>
+                        <span className='badge badge-secondary btn-ghost border-secondary'>
                           {getLanguageFlag(user.learningLanguage)}
                           Learning: {capitalize(user.learningLanguage)}
                         </span>

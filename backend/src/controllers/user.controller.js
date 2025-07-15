@@ -52,7 +52,7 @@ export async function sendFriendRequest(req, res) {
         const {id: recipientId} = req.params        // 'id' renamed with 'recipientId'
 
         // preventing sending friend-request to myself
-        if(myID === recipientId)
+        if(myId === recipientId)
             return res.status(400).json({message: "You cannot send friend request to yourself."})
 
         const recipient = await User.findById(recipientId)
@@ -64,7 +64,7 @@ export async function sendFriendRequest(req, res) {
             return res.status(400).json({message: "You are already friends with this user."})
 
         // checking if a request already exists
-        const exisitngREquest = await FriendRequest.findOne({
+        const existingRequest = await FriendRequest.findOne({
             $or: [
                 {sender: myId, recipient: recipientId},
                 {sender: recipientId, recipient: myId}
@@ -120,8 +120,8 @@ export async function acceptFriendRequest(req, res){
          * "recipient" is added to the 'friend' list of the "sender"
          */
 
-        await User.findByIdAndUpdate(friendRequest.sender, {
-            $addToSet: {friends: friendRequest.recipient}
+        await User.findByIdAndUpdate(friendRequest.recipient, {
+            $addToSet: {friends: friendRequest.sender}
         }) 
 
         res.status(200).json({message: "Friend Request Accepted."})
