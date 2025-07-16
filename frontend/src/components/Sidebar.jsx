@@ -38,7 +38,7 @@ const Sidebar = () => {
                 </span>
             </Link>
 
-            <Link
+            {/* <Link
                 to="/friends"
                 className={`btn btn-ghost justify-start w-full gap-3 px-3 normal-case ${
                     currentPath === "/friends" ? "btn-active" : ""
@@ -48,7 +48,7 @@ const Sidebar = () => {
                 <span>
                     Friends
                 </span>
-            </Link>
+            </Link> */}
 
             <Link
                 to="/notifications"

@@ -1,9 +1,9 @@
-import React from 'react'
 import {useState} from "react"
 import {ShipWheelIcon} from "lucide-react"
 import {Link} from "react-router"
 import {useMutation, useQueryClient} from "@tanstack/react-query"
 import {signup} from "../lib/api.js"
+import Toast from "react-hot-toast"
 
 const SignUpPage = () => {
   const [signupData, setSignupData] = useState({
@@ -26,8 +26,22 @@ const SignUpPage = () => {
   // 'onSuccess' callback is called when the mutation is successful, invalidating the "authUser" query to refetch the user data
   const handleSignup = (e) => {
     e.preventDefault()
+
+    if (!agreeToTerms) {
+      Toast.custom(
+        <div className="bg-error text-white text-sm px-4 py-2 rounded shadow-md">
+          Please agree to the terms and conditions before signing up.
+        </div>
+      )
+
+      return
+    }
+
     signupMutation(signupData)
   }
+
+  // for "agree to terms & conditions" checkbox
+  const [agreeToTerms, setAgreeToTerms] = useState(false)
 
   return (
     <div className="h-screen flex items-center justify-center p-4 sm:p-6 md:p-8">
@@ -124,7 +138,12 @@ const SignUpPage = () => {
 
                 <div className="form-control">
                   <label className="label cursor-pointer justify-start gap-2">
-                    <input type="checkbox" className="checkbox checkbox-sm" />
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={agreeToTerms}
+                      onChange={(e) => setAgreeToTerms(e.target.checked)}
+                    />
                     <span className="text-xs leading-tight">
                       I agree to the{" "}
                       <span className="text-primary hover:underline">

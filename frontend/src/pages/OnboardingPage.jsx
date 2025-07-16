@@ -6,6 +6,7 @@ import { completeOnboarding } from '../lib/api'
 import { LoaderIcon, toast } from 'react-hot-toast'
 import { MapPinIcon, ShipWheelIcon, ShuffleIcon } from 'lucide-react'
 import {LANGUAGES} from '../constants/index.js'
+import Toast from "react-hot-toast"
 
 const OnboardingPage = () => {
   const { authUser } = useAuthUser()
@@ -29,18 +30,18 @@ const OnboardingPage = () => {
   const {mutate: onboardingMutation, isPending} = useMutation({
     mutationFn: completeOnboarding,
     onSuccess: () => {
-      toast.success("Profile onboarded successfully!")
+      Toast.success("Profile onboarded successfully!")
       queryClient.invalidateQueries({queryKey: ["authUser"]})
     },
 
     onError: (error) => {
       toast.error(error.response.data.message, {
-  style: {
-    fontSize: '0.875rem',
-    padding: '8px 12px',
-    minWidth: 'auto',
-    maxWidth: '90%',
-  },
+      style: {
+        fontSize: '0.875rem',
+        padding: '8px 12px',
+        minWidth: 'auto',
+        maxWidth: '90%',
+      },
 })
     }
   })
