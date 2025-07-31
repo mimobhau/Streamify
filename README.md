@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 style="font-size:3rem; font-weight:bold;">🎵 Streamify</h1>
+  <h1 style="font-size:3rem; font-weight:bold;">Streamify</h1>
   <h3>Modern Chat & Streaming Platform</h3>
   <img src="https://img.shields.io/badge/Full%20Stack-React%20%7C%20Node%20%7C%20MongoDB-blue" alt="Tech Stack" />
 </div>
@@ -219,12 +219,8 @@ const notificationSchema = new mongoose.Schema({
 - [x] User authentication & onboarding
 - [x] Real-time chat
 - [x] Profile management
-- [ ] Group chat
-- [ ] Audio/video calls
-- [ ] Notifications & reminders
-- [ ] Mobile app (React Native)
-- [ ] Integrations (export data, third-party APIs)
-- [ ] PWA support
+- [x] Audio/video calls
+- [x] Notifications
 
 ---
 
